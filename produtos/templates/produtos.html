@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head'  %}
+    <link rel="stylesheet" href="{% static 'produtos\css\produtos.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md card-dashboard">
+                <p class="text-card">Adicionar Produtos</p>
+            </div>
+
+            <div class="col-md card-dashboard">
+                <p class="text-card">Atualizar Produtos</p>
+            </div>
+        </div>
+        <br>
+        <hr style="background-color:gray;">
+        <br>
+        <div class="adicionar-produto">
+            <form action="{% url 'produtos' %}" method="POST">{% csrf_token %}
+                <div class="row">
+                    <div class="col-md">
+                        <p>Nome:</p>
+                        <input type="text" class="form-control" placeholder="Nome do Produto/Ingrediente">
+                    </div>
+                    <div class="col-md">
+                        <p>Quantidade em Estoque:</p>
+                        <input type="number" class="form-control" placeholder="Quantidade">
+                    </div>
+                </div>
+
+                <br><br>
+
+                <div class="row">
+                    <div class="col-md">
+                        <p>Quantidade Minima:</p>
+                        <input type="number" class="form-control" placeholder="min.">
+                    </div>
+                    <div class="col-md">
+                        <p>Data de Validade</p>
+                        <input type="date" class="form-control" placeholder="Validade">
+                    </div>
+                </div>
+                <br><br>
+                <br><br>
+                <input type="submit" value="Cadastrar" class="btn-principal">
+      
+            </form>
+            
+        </div>
+    </div>
+    <script src="{% static 'produtos/js/produtos.js' %}"></script> <!-- NAO USADO -->
+{% endblock %}
