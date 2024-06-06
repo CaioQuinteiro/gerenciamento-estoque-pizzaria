@@ -7,13 +7,13 @@
     text-align: center;
     padding: 20px;
     border-radius: 20px;
+    cursor: pointer;
 
 }
 
 .text-card{
 
     font-size: 20px;
-
 }
 
 .btn-add-produtos{
@@ -23,6 +23,15 @@
     font-weight: bold;
     cursor: pointer;
 
+}
+
+.escrita_label {
+    color: black;
+}
+
+input {
+    border: none;
+    box-shadow:  0 5px 10px rgba(0, 0, 0, 0.3);;
 }
 
 .btn-principal{
@@ -38,4 +47,8 @@
 .btn-principal:hover{
     background-color: var(--main-color);
     transition: 0.5s;
+}
+
+#att_produto {
+    display: none;
 }

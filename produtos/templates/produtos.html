@@ -8,26 +8,26 @@
 {% block 'dashboard' %}
     <div class="container">
         <div class="row">
-            <div class="col-md card-dashboard">
+            <div onclick="exibir_form('1')" class="col-md card-dashboard">
                 <p class="text-card">Adicionar Produtos</p>
             </div>
 
-            <div class="col-md card-dashboard">
+            <div onclick="exibir_form('2')" class="col-md card-dashboard">
                 <p class="text-card">Atualizar Produtos</p>
             </div>
         </div>
         <br>
         <hr style="background-color:gray;">
         <br>
-        <div class="adicionar-produto">
+        <div id="add-produto" class="add-produto">
             <form action="{% url 'produtos' %}" method="POST">{% csrf_token %}
                 <div class="row">
                     <div class="col-md">
-                        <p>Nome:</p>
+                        <p class="escrita_label">Nome:</p>
                         <input type="text" class="form-control" placeholder="Nome do Produto/Ingrediente" name="nome">
                     </div>
                     <div class="col-md">
-                        <p>Quantidade em Estoque:</p>
+                        <p class="escrita_label">Quantidade em Estoque:</p>
                         <input type="number" class="form-control" placeholder="Quantidade" name="qtde_estoque">
                     </div>
                 </div>
@@ -36,11 +36,11 @@
 
                 <div class="row">
                     <div class="col-md">
-                        <p>Quantidade Minima:</p>
+                        <p class="escrita_label">Quantidade Minima:</p>
                         <input type="number" class="form-control" placeholder="min." name="qtde_min">
                     </div>
                     <div class="col-md">
-                        <p>Data de Validade</p>
+                        <p class="escrita_label">Data de Validade</p>
                         <input type="date" class="form-control" placeholder="Validade" name="data_validade">
                     </div>
                 </div>
@@ -51,6 +51,16 @@
             </form>
             
         </div>
+
+        <div id="att-produto">
+            <p></p>
+            <select id="produto-select" onchange="dados_produto()" class="form-control">
+                {% for produto in produtos %}
+                <option value="{{produto.id}}">{{produto.nome}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
     </div>
     <script src="{% static 'produtos/js/produtos.js' %}"></script> <!-- NAO USADO -->
 {% endblock %}

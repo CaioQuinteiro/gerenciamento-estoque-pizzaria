@@ -4,7 +4,8 @@ from .models import Produto
 
 def produtos(request):
     if request.method == "GET":
-        return render(request, 'produtos.html')
+        produtos_list = Produto.objects.all()
+        return render(request, 'produtos.html', {'produtos': produtos_list})
     elif request.method == "POST":
         nome = request.POST.get('nome')
         qtde_estoque = request.POST.get('qtde_estoque')
