@@ -27,21 +27,19 @@
                         <input type="text" class="form-control" placeholder="Nome do Produto/Ingrediente" name="nome">
                     </div>
                     <div class="col-md">
-                        <p class="escrita_label">Quantidade em Estoque:</p>
-                        <input type="number" class="form-control" placeholder="Quantidade" name="qtde_estoque">
+                        <p class="escrita_label">Descrição:</p>
+                        <input type="text" class="form-control" placeholder="Descricao do produto" name="descricao">
                     </div>
                 </div>
-
-                <br><br>
-
+                <br> <br>
                 <div class="row">
                     <div class="col-md">
-                        <p class="escrita_label">Quantidade Minima:</p>
-                        <input type="number" class="form-control" placeholder="min." name="qtde_min">
+                        <p class="escrita_label">Quantidade em Estoque:</p>
+                        <input type="number" class="form-control" placeholder="Quantidade que possui no estoque" name="qtde_estoque">
                     </div>
                     <div class="col-md">
-                        <p class="escrita_label">Data de Validade</p>
-                        <input type="date" class="form-control" placeholder="Validade" name="data_validade">
+                        <p class="escrita_label">Unidade de Medida: </p>
+                        <input type="text" class="form-control" placeholder="kg, Unidade, etc." name="unidade_medida">
                     </div>
                 </div>
                 <br><br>
@@ -49,16 +47,33 @@
                 <input type="submit" value="Cadastrar" class="btn-principal">
       
             </form>
-            
+
         </div>
+        
 
         <div id="att-produto">
-            <p></p>
             <select id="produto-select" onchange="dados_produto()" class="form-control">
                 {% for produto in produtos %}
                 <option value="{{produto.id}}">{{produto.nome}}</option>
                 {% endfor %}
             </select>
+
+            <br>
+            <hr style="background-color:gray;">
+
+            <div id="form-att-produto">
+                <input type="hidden" id="id">
+                <p>Nome: </p>
+                <input type="text" id="nome" class="form-control"> <br>
+                <p>Descricao: </p>
+                <input type="text" id="descricao" class="form-control"> <br>
+                <p>Quantidade em estoque: </p>
+                <input type="number" id="qtde_estoque" class="form-control"> <br>
+                <p>Unidade de Medida: </p>
+                <input type="text" id="unidade_medida" class="form-control"> <br>
+                <input onclick="update_produto()" type="submit" value="Salvar" class="btn btn-success" id="botao-salva-edicao">
+                <br> <br><br>
+            </div>
         </div>
 
     </div>

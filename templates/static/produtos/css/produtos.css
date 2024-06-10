@@ -40,7 +40,7 @@ input {
     background-color: var(--dark-color);
     padding: 5px;
     font-size: 30px;
-    border-radius: 15px;
+    border-radius: 8px;
 
 }
 
@@ -49,6 +49,15 @@ input {
     transition: 0.5s;
 }
 
-#att_produto {
+#form-att-produto, #att_produto {
     display: none;
+}
+
+#botao-salva-edicao {
+    background-color: var(--dark-color);
+}
+
+#botao-salva-edicao:hover {
+    background-color: var(--main-color);
+    transition: 0.5s;
 }
