@@ -25,7 +25,7 @@
         <hr style="background-color:gray;">
         <br>
 
-         <div id="add-produto" class="add-produto" style="display: none;">
+        <div id="add-produto" class="add-produto" style="display: none;">
             <form action="{% url 'produtos' %}" method="POST">{% csrf_token %}
                 <div class="row">
                     <div class="col-md">
@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col-md">
                         <p class="escrita_label">Quantidade em Estoque:</p>
-                        <input type="number" class="form-control" placeholder="Quantidade que possui no estoque" name="qtde_estoque" required>
+                        <input type="number" step="0.01" class="form-control" placeholder="Quantidade que possui no estoque" name="qtde_estoque" required>
                     </div>
                     <div class="col-md">
                         <p class="escrita_label">Unidade de Medida:</p>
@@ -70,7 +70,7 @@
                 <p>Descrição:</p>
                 <input type="text" id="descricao" class="form-control"> <br>
                 <p>Quantidade em estoque:</p>
-                <input type="number" id="qtde_estoque" class="form-control"> <br>
+                <input type="number" step="0.01" id="qtde_estoque" class="form-control"> <br>
                 <p>Unidade de Medida:</p>
                 <input type="text" id="unidade_medida" class="form-control"> <br>
                 <input onclick="update_produto()" type="submit" value="Salvar" class="btn btn-success" id="botao-salva-edicao">

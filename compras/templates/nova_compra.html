@@ -2,12 +2,18 @@
 {% load static %}
 
 {% block 'head'  %}
-    <link rel="stylesheet" href="{% static 'produtos\css\produtos.css' %}">
+    <link rel="stylesheet" href="{% static 'compras\css\compras.css' %}">
 {% endblock %}
 
 {% block 'dashboard' %}
-    <br> <br>
+    <br><br>
     <div class="container">
-        {{form.as_p}}
+        <form action="{% url 'nova_compra' %}" method="POST">{% csrf_token %}
+            {{form.as_p}}
+            <br>
+            <input id="botao-salva-edicao" type="submit" class="btn btn-success" value="Salvar">
+        </form>
+        <br><br>
+        
     </div>
 {% endblock %}

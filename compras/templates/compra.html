@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head'  %}
+    <link rel="stylesheet" href="{% static 'compras\css\compras.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+    <br><br>
+    <div class="container">
+        {{compra.descricao}}
+    </div>
+{% endblock %}

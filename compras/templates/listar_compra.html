@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head'  %}
+    <link rel="stylesheet" href="{% static 'compras\css\compras.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+    <br><br>
+    <div class="container">
+        <div>
+            <h2>Lista de Produtos</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Descricao</th>
+                        <th>Valor</th>
+                        <th>identificador</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for compra in compras %}
+                    <tr>
+                        <td>{{compra.descricao}}</td>
+                        <td>{{compra.valor}} R$</td>
+                        <td><a href="{% url 'compra' compra.identificador %}">{{compra.identificador}}</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

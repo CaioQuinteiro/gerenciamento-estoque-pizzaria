@@ -1,22 +1,19 @@
-from secrets import token_hex
+from secrets import token_hex, token_urlsafe
 from django.db import models
 from produtos.models import Produto
+from fornecedores.models import Fornecedor
 from datetime import datetime
-
-class ItemCompra(models.Model):
-    produto = models.ForeignKey(Produto, on_delete=models.SET_NULL, null=True)
-    qtde = models.IntegerField()
-    data_validade = models.DateField()
-    preco = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
-
-    def __str__(self) -> str:
-        return self.descricao
 
 class Compra(models.Model):
     descricao = models.CharField(max_length=50, null=True)
-    item_compra = models.ManyToManyField(ItemCompra)
     protocolo = models.CharField(max_length=52, null=True, blank=True)
+    qtde = models.IntegerField()
+    valor = models.DecimalField(max_digits=8, decimal_places=2)
+    data_validade = models.DateField()
     data_compra = models.DateField()
+    fornecedor = models.ManyToManyField(Fornecedor)
+    Produto = models.ManyToManyField(Produto)
+    identificador = models.CharField(max_length=24, null=True, blank=True)
     
     def __str__(self) -> str:
         return self.descricao
@@ -24,11 +21,6 @@ class Compra(models.Model):
     def save(self, *args, **kwargs):
         if not self.protocolo:
             self.protocolo = datetime.now().strftime('%d/%m/%Y-%H:%M:%S-') + token_hex(16)
+        if not self.identificador:
+            self.identificador = token_urlsafe(16)
         super(Compra, self).save(*args, **kwargs)
-
-    def preco_total(self):
-        preco_total = float(0)
-        for item in self.item_compra.all():
-            preco_total += float(item.preco)
-            
-        return preco_total
