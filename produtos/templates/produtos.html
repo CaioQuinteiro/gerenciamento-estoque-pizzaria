@@ -8,6 +8,11 @@
 {% block 'dashboard' %}
     <div class="container">
         <div class="row">
+
+            <div onclick="exibir_form('3')" class="col-md card-dashboard">
+                <p class="text-card">Listar Produtos</p>
+            </div>
+
             <div onclick="exibir_form('1')" class="col-md card-dashboard">
                 <p class="text-card">Adicionar Produtos</p>
             </div>
@@ -19,42 +24,39 @@
         <br>
         <hr style="background-color:gray;">
         <br>
-        <div id="add-produto" class="add-produto">
+
+         <div id="add-produto" class="add-produto" style="display: none;">
             <form action="{% url 'produtos' %}" method="POST">{% csrf_token %}
                 <div class="row">
                     <div class="col-md">
                         <p class="escrita_label">Nome:</p>
-                        <input type="text" class="form-control" placeholder="Nome do Produto/Ingrediente" name="nome">
+                        <input type="text" class="form-control" placeholder="Nome do Produto/Ingrediente" name="nome" required>
                     </div>
                     <div class="col-md">
                         <p class="escrita_label">Descrição:</p>
-                        <input type="text" class="form-control" placeholder="Descricao do produto" name="descricao">
-                    </div>
-                </div>
-                <br> <br>
-                <div class="row">
-                    <div class="col-md">
-                        <p class="escrita_label">Quantidade em Estoque:</p>
-                        <input type="number" class="form-control" placeholder="Quantidade que possui no estoque" name="qtde_estoque">
-                    </div>
-                    <div class="col-md">
-                        <p class="escrita_label">Unidade de Medida: </p>
-                        <input type="text" class="form-control" placeholder="kg, Unidade, etc." name="unidade_medida">
+                        <input type="text" class="form-control" placeholder="Descricao do produto" name="descricao" required>
                     </div>
                 </div>
                 <br><br>
-                <br>
+                <div class="row">
+                    <div class="col-md">
+                        <p class="escrita_label">Quantidade em Estoque:</p>
+                        <input type="number" class="form-control" placeholder="Quantidade que possui no estoque" name="qtde_estoque" required>
+                    </div>
+                    <div class="col-md">
+                        <p class="escrita_label">Unidade de Medida:</p>
+                        <input type="text" class="form-control" placeholder="kg, Unidade, etc." name="unidade_medida" required>
+                    </div>
+                </div>
+                <br><br>
                 <input type="submit" value="Cadastrar" class="btn-principal">
-      
             </form>
-
         </div>
-        
 
-        <div id="att-produto">
+        <div id="att-produto" style="display: none;">
             <select id="produto-select" onchange="dados_produto()" class="form-control">
                 {% for produto in produtos %}
-                <option value="{{produto.id}}">{{produto.nome}}</option>
+                <option value="{{ produto.id }}">{{ produto.nome }}</option>
                 {% endfor %}
             </select>
 
@@ -63,17 +65,50 @@
 
             <div id="form-att-produto">
                 <input type="hidden" id="id">
-                <p>Nome: </p>
+                <p>Nome:</p>
                 <input type="text" id="nome" class="form-control"> <br>
-                <p>Descricao: </p>
+                <p>Descrição:</p>
                 <input type="text" id="descricao" class="form-control"> <br>
-                <p>Quantidade em estoque: </p>
+                <p>Quantidade em estoque:</p>
                 <input type="number" id="qtde_estoque" class="form-control"> <br>
-                <p>Unidade de Medida: </p>
+                <p>Unidade de Medida:</p>
                 <input type="text" id="unidade_medida" class="form-control"> <br>
                 <input onclick="update_produto()" type="submit" value="Salvar" class="btn btn-success" id="botao-salva-edicao">
-                <br> <br><br>
+                <br><br><br>
             </div>
+        </div>
+        <div id="lista-produto" class="lista-produto" style="display: none;">
+            <h2>Lista de Produtos</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Quantidade em Estoque</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for produto in produtos %}
+                    <tr>
+                        <td>{{ produto.id }}</td>
+                        <td>{{ produto.nome }}</td>
+                        <td>{{ produto.descricao }}</td>
+                        <td>{{ produto.qtde_estoque }} {{ produto.unidade_medida }}</td>
+                        <td>
+                            <form action="{% url 'delete_produto' produto.id %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="submit" value="Deletar" class="btn btn-danger">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br><br><br>
+
         </div>
 
     </div>

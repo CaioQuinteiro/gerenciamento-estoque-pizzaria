@@ -2,13 +2,20 @@ function exibir_form(tipo){
 
     add_produto = document.getElementById('add-produto')
     att_produto = document.getElementById('att-produto')
+    lista_produto = document.getElementById('lista-produto')
 
     if(tipo == "1"){
         att_produto.style.display = "none"
         add_produto.style.display = "block"
+        lista_produto.style.display = "none"
     }else if(tipo == "2"){
         add_produto.style.display = "none"
         att_produto.style.display = "block"
+        lista_produto.style.display = "none"
+    }else if(tipo == "3"){
+        add_produto.style.display = "none"
+        att_produto.style.display = "none"
+        lista_produto.style.display = "block"
     }
 
 }
@@ -73,12 +80,12 @@ function update_produto(){
         return result.json()
     }).then(function(data){
 
-        if (data['satus'] == '200'){
+        if (data['status'] == '200'){
             nome = data['nome']
             descricao = data['descricao']
             qtde_estoque = data['qtde_estoque']
             unidade_medida = data['unidade_medida']
-            console.log('Dados alterado com sucesso')
+            console.log('Dados alterados com sucesso')
         }else{
             console.log('Ocorreu algum erro')
         }

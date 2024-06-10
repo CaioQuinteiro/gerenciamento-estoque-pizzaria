@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from django.shortcuts import get_object_or_404
@@ -24,7 +24,7 @@ def produtos(request):
 
         produto.save()
 
-        return HttpResponse('teste')
+        return redirect('produtos')
 
 def att_produto(request):
     id_produto = request.POST.get('id_produto')
@@ -56,3 +56,14 @@ def update_produto(request, id):
         return JsonResponse({'status': '500'})
 
     return JsonResponse({'teste': 'teste'})
+
+def lista_produto(request):
+    if request.method == "GET":
+        produtos = Produto.objects.all()
+        produtos_json = json.loads(serializers.serialize('json', produtos))
+        return JsonResponse(produtos_json, safe=False)
+
+def delete_produto(request, id):
+    produto = get_object_or_404(Produto, id=id)
+    produto.delete()
+    return redirect('produtos')

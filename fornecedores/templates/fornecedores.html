@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head'  %}
+    <link rel="stylesheet" href="{% static 'fornecedores\css\fornecedor.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+    <div class="container">
+        <div class="row">
+
+            <div onclick="exibir_form('3')" class="col-md card-dashboard">
+                <p class="text-card">Listar Fornecedores</p>
+            </div>
+
+            <div onclick="exibir_form('1')" class="col-md card-dashboard">
+                <p class="text-card">Adicionar Fornecedores</p>
+            </div>
+
+            <div onclick="exibir_form('2')" class="col-md card-dashboard">
+                <p class="text-card">Atualizar Fornecedores</p>
+            </div>
+        </div>
+        <br>
+        <hr style="background-color:gray;">
+        <br>
+
+         <div id="add-fornecedor" class="add-fornecedor" style="display: none;">
+            <form action="{% url 'fornecedores' %}" method="POST">{% csrf_token %}
+                <div class="row">
+                    <div class="col-md">
+                        <p class="escrita_label">Nome:</p>
+                        <input type="text" class="form-control" placeholder="Nome Fornecedores" name="nome" required>
+                    </div>
+                    <div class="col-md">
+                        <p class="escrita_label">Email:</p>
+                        <input type="email" class="form-control" placeholder="Email" name="email" required>
+                    </div>
+                </div>
+                <br><br>
+                <div class="row">
+                    <div class="col-md">
+                        <p class="escrita_label">Telefone:</p>
+                        <input type="tel" class="form-control" placeholder="telefone" name="telefone" required>
+                    </div>
+                </div>
+                <br><br>
+                <input type="submit" value="Cadastrar" class="btn-principal">
+            </form>
+        </div>
+
+        <div id="att-fornecedor" style="display: none;">
+            <select id="fornecedor-select" onchange="dados_fornecedor()" class="form-control">
+                {% for fornecedor in fornecedores %}
+                <option value="{{ fornecedor.id }}">{{ fornecedor.nome }}</option>
+                {% endfor %}
+            </select>
+
+            <br>
+            <hr style="background-color:gray;">
+
+            <div id="form-att-fornecedor">
+                <input type="hidden" id="id">
+                <p>Nome:</p>
+                <input type="text" id="nome" class="form-control"> <br>
+                <p>Email:</p> 
+                <input type="email" id="email" class="form-control"> <br> 
+                <p>Telefone:</p> 
+                <input type="tel" id="telefone" class="form-control"> <br> 
+                <input onclick="update_fornecedor()" type="submit" value="Salvar" class="btn btn-success" id="botao-salva-edicao">
+                <br><br><br>
+            </div>
+        </div>
+        <div id="lista-fornecedor" class="lista-fornecedor" style="display: none;">
+            <h2>Lista de fornecedor</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fornecedor in fornecedores %}
+                    <tr>
+                        <td>{{ fornecedor.id }}</td>
+                        <td>{{ fornecedor.nome }}</td>
+                        <td>{{ fornecedor.email }}</td>
+                        <td>{{ fornecedor.telefone }}</td>
+                        <td>
+                            <form action="{% url 'delete_fornecedor' fornecedor.id %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="submit" value="Deletar" class="btn btn-danger">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br><br><br>
+
+        </div>
+
+    </div>
+    <script src="{% static 'fornecedores/js/fornecedor.js' %}"></script>
+{% endblock %}

@@ -16,7 +16,7 @@
     font-size: 20px;
 }
 
-.btn-add-produtos{
+.btn-add-forncedores{
 
     background-color: var(--contrast-color);
     padding: 5px;
@@ -99,7 +99,7 @@ table.table td {
     padding: 12px 15px;
 }
 
-.lista-produto h2 {
+.lista-fornecedor h2 {
     margin-bottom: 20px;
     font-size: 24px;
     color: var(--dark-color);
