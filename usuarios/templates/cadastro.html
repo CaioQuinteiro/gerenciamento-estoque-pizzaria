@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzaria - Cadastro</title>
+    <link rel="stylesheet" href="{% static 'login\css\login.css' %}">
+</head>
+<body>
+    <form class="login" action="{% url 'cadastro' %}" method="POST">{% csrf_token %}
+        <h2>Cadastro</h2>
+        <div class="div-usuario">
+            <input type="text" name="username" required>
+            <label>Usuário</label>
+        </div>
+
+        <div class="div-usuario">
+            <input type="email" name="email" required>
+            <label>Email</label>
+        </div>
+
+        <div class="div-usuario">
+            <input type="password" name="senha" required>
+            <label>Senha</label>
+        </div>
+
+        <a href="" class="botao">
+            <input type="submit" value="Cadastrar" class="input-botao">
+        </a>
+
+
+    </form>
+</body>
+</html>
