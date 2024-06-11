@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head'  %}
+    <link rel="stylesheet" href="{% static 'compras\css\dashboard.css' %}">
+{% endblock %}
+
+{% block 'dashboard' %}
+    <br><br>
+    <h1>Dashboard</h1>
+    <div class="container">
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Total Gasto em Compras</h3>
+            </div>
+            <div class="card-body">
+                <p>R$ {{ total_gasto }}</p>
+            </div>
+        </div>
+
+        <div class="card"  id="card-1">
+            <div class="card-header">
+                <h3>Produtos com 0 de estoque </h3>
+            </div>
+            <div class="card-body">
+                <p>{{ produtos_sem_estoque }}</p>
+            </div>
+        </div>
+
+        <div class="card"  id="card-2">
+            <div class="card-header">
+                <h3>Produtos sem o estoque minimo </h3>
+            </div>
+            <div class="card-body">
+                <p>{{ produtos_sem_estoque }}</p>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}

@@ -55,7 +55,6 @@ def update_produto(request, id):
     except:
         return JsonResponse({'status': '500'})
 
-    return JsonResponse({'teste': 'teste'})
 
 def lista_produto(request):
     if request.method == "GET":

@@ -1,9 +1,12 @@
+from itertools import count
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Compra, Produto, Fornecedor
 from .forms import FormServico
 from django.http import HttpResponse, FileResponse
 from fpdf import FPDF
 from io import BytesIO
+from compras import models
+from django.db.models import Sum 
 
 def nova_compra(request):
     if request.method == "GET":  
@@ -77,3 +80,12 @@ def delete_compra(request, identificador):
     compra = get_object_or_404(Compra, identificador=identificador)
     compra.delete()
     return redirect('nova_compra')
+
+def dashboard(request):
+    total_gasto = Compra.objects.aggregate(total_gasto=Sum('valor'))['total_gasto'] or 0
+    produtos_sem_estoque = Produto.objects.filter(qtde_estoque=0).count()
+    context = {
+        'total_gasto': total_gasto,
+        'produtos_sem_estoque': produtos_sem_estoque,
+    }
+    return render(request, 'dashboard.html', context)
