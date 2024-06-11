@@ -6,7 +6,7 @@ from django.http import HttpResponse, FileResponse
 from fpdf import FPDF
 from io import BytesIO
 from compras import models
-from django.db.models import Sum 
+from django.db.models import Sum, Count
 
 def nova_compra(request):
     if request.method == "GET":  
@@ -84,8 +84,10 @@ def delete_compra(request, identificador):
 def dashboard(request):
     total_gasto = Compra.objects.aggregate(total_gasto=Sum('valor'))['total_gasto'] or 0
     produtos_sem_estoque = Produto.objects.filter(qtde_estoque=0).count()
+    total_produtos = Produto.objects.aggregate(total_produtos=Count('id'))['total_produtos']
     context = {
         'total_gasto': total_gasto,
         'produtos_sem_estoque': produtos_sem_estoque,
+        'total_produtos': total_produtos,
     }
     return render(request, 'dashboard.html', context)

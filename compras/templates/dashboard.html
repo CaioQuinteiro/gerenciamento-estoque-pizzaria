@@ -15,7 +15,7 @@
                 <h3>Total Gasto em Compras</h3>
             </div>
             <div class="card-body">
-                <p>R$ {{ total_gasto }}</p>
+                <p>R$ {{ total_gasto|floatformat:2 }}</p>
             </div>
         </div>
 
@@ -28,12 +28,12 @@
             </div>
         </div>
 
-        <div class="card"  id="card-2">
+        <div class="card" id="card-2">
             <div class="card-header">
-                <h3>Produtos sem o estoque minimo </h3>
+                <h3>Total de Produtos Registrados</h3>
             </div>
             <div class="card-body">
-                <p>{{ produtos_sem_estoque }}</p>
+                <p>{{ total_produtos }}</p>
             </div>
         </div>
         

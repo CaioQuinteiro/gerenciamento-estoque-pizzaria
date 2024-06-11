@@ -16,7 +16,7 @@
                         <th>Descricao</th>
                         <th>Valor</th>
                         <th>Data Da Compra</th>
-                        <th>identificador</th>
+                        <th>Ordem De Compra</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,7 +25,7 @@
                         <td>{{compra.descricao}}</td>
                         <td>{{compra.valor}} R$</td>
                         <td>{{compra.data_compra}}</td>
-                        <td><a href="{% url 'compra' compra.identificador %}">{{compra.identificador}}</a></td>
+                        <td><a href="{% url 'compra' compra.identificador %}">PDF</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
