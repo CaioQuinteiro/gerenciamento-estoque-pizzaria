@@ -6,8 +6,26 @@
 {% endblock %}
 
 {% block 'dashboard' %}
-    <br><br>
-    <div class="container">
-        {{compra.descricao}}
+    <br>
+    <div class="container m-5">
+        <div class="text-center">
+            <a class="btn btn-info" href="{% url 'gerar_oc' compra.identificador %}">Gerar PDF</a>
+            <br><br>
+            <h3>{{compra.descricao}}</h3>
+
+            <hr>
+            <ul class="compra-detalhes">
+                <li>Descrição: {{ compra.descricao }}</li>
+                <li>Quantidade: {{ compra.qtde }} {{ compra.produto.unidade_medida }}</li>
+                <li>Valor: R${{ compra.valor }}</li>
+                <li>Data da Compra: {{ compra.data_compra|date:"d/m/Y" }}</li>
+                <li>Data de Validade: {{ compra.data_validade|date:"d/m/Y" }}</li>
+                <li>Produto: {{ compra.produto.nome }}</li>
+                <li>Fornecedor: {{ compra.fornecedor.nome }}</li>
+                <li>Número do Protocolo: {{ compra.protocolo }}</li>
+            </ul>
+            <hr>
+        </div>
     </div>
+
 {% endblock %}

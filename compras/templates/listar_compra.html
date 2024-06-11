@@ -9,12 +9,13 @@
     <br><br>
     <div class="container">
         <div>
-            <h2>Lista de Produtos</h2>
+            <h2>Histórico de Compras</h2>
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Descricao</th>
                         <th>Valor</th>
+                        <th>Data Da Compra</th>
                         <th>identificador</th>
                     </tr>
                 </thead>
@@ -23,6 +24,7 @@
                     <tr>
                         <td>{{compra.descricao}}</td>
                         <td>{{compra.valor}} R$</td>
+                        <td>{{compra.data_compra}}</td>
                         <td><a href="{% url 'compra' compra.identificador %}">{{compra.identificador}}</a></td>
                     </tr>
                     {% endfor %}

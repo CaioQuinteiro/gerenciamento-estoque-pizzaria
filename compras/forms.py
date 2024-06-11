@@ -4,7 +4,7 @@ from .models import Compra
 class FormServico(ModelForm):
     class Meta:
         model = Compra
-        exclude = ['protocolo']
+        exclude = ['protocolo', 'identificador']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

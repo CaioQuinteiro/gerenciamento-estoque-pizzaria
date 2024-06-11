@@ -6,8 +6,10 @@
 {% endblock %}
 
 {% block 'dashboard' %}
-    <br><br>
+    <br>
     <div class="container">
+        <h3>Nova Compra</h3>
+        <br>
         <form action="{% url 'nova_compra' %}" method="POST">{% csrf_token %}
             {{form.as_p}}
             <br>

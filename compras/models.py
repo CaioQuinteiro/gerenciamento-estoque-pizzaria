@@ -11,8 +11,8 @@ class Compra(models.Model):
     valor = models.DecimalField(max_digits=8, decimal_places=2)
     data_validade = models.DateField()
     data_compra = models.DateField()
-    fornecedor = models.ManyToManyField(Fornecedor)
-    Produto = models.ManyToManyField(Produto)
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE, default=0)
+    fornecedor = models.ForeignKey(Fornecedor, on_delete=models.CASCADE, default=0)
     identificador = models.CharField(max_length=24, null=True, blank=True)
     
     def __str__(self) -> str:

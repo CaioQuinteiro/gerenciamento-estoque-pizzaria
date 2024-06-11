@@ -1,3 +1,4 @@
+
 .btn-add-produtos{
 
     background-color: var(--contrast-color);
@@ -25,6 +26,15 @@
 
 }
 
+.btn-info{
+    background-color: var(--dark-color);
+
+}
+.btn-info:hover{
+    background-color: var(--main-color);
+    transition: 0.5s;
+}
+
 .btn-principal:hover{
     background-color: var(--main-color);
     transition: 0.5s;
@@ -34,13 +44,17 @@
     display: none;
 }
 
-#botao-salva-edicao {
+#botao-salva-edicao, #botao-lista-compras {
     background-color: var(--dark-color);
 }
 
-#botao-salva-edicao:hover {
+#botao-salva-edicao:hover, #botao-lista-compras:hover {
     background-color: var(--main-color);
     transition: 0.5s;
+}
+
+h3 {
+    color:  var(--dark-color);
 }
 
 table.table {
@@ -84,4 +98,25 @@ table.table td {
     margin-bottom: 20px;
     font-size: 24px;
     color: var(--dark-color);
+}
+
+ul.compra-detalhes {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.compra-detalhes li {
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--dark-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+ul.compra-detalhes li:nth-child(even) {
+    background-color: #f3f3f3;
 }
