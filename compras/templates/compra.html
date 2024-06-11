@@ -24,6 +24,10 @@
                 <li>Fornecedor: {{ compra.fornecedor.nome }}</li>
                 <li>Número do Protocolo: {{ compra.protocolo }}</li>
             </ul>
+            <form action="{% url 'delete_compra' compra.identificador %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <input type="submit" value="Deletar" class="btn btn-danger">
+            </form>
             <hr>
         </div>
     </div>

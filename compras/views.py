@@ -72,3 +72,8 @@ def gerar_oc(request, identificador):
     pdf_bytes = BytesIO(pdf_content)
 
     return FileResponse(pdf_bytes, as_attachment=True, filename=f"oc-{compra.protocolo}.pdf")
+
+def delete_compra(request, identificador):
+    compra = get_object_or_404(Compra, identificador=identificador)
+    compra.delete()
+    return redirect('nova_compra')
