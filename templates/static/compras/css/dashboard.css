@@ -13,7 +13,7 @@ h1 {
 .card {
     width: calc(48% - 10px); 
     margin-bottom: 0px;
-    margin-top: 60px;
+    margin-top: 30px;
     padding: 20px; 
     background-color: #ffffff; 
     border-radius: 10px; 
